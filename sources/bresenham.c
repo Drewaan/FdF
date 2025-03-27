@@ -6,13 +6,13 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 05:26:57 by aamaya-g          #+#    #+#             */
-/*   Updated: 2024/11/28 13:33:33 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:29:48 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int absolute_val(int x)
+int	absolute_val(int x)
 {
 	if (x < 0)
 		return (-x);
@@ -22,7 +22,7 @@ int absolute_val(int x)
 void	init_br(t_point *start, t_point *end, t_point *delta, t_point *sign)
 {
 	delta -> x = absolute_val(end -> x - start -> x);
-	delta -> y = absolute_val(end -> y - start -> y);
+	delta -> y = -absolute_val(end -> y - start -> y);
 	sign -> x = -1;
 	sign -> y = -1;
 	if (start -> x < end -> x)

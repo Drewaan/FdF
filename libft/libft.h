@@ -15,13 +15,18 @@
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
+#  define OPEN_MAX 256
 # endif
 
 # include <fcntl.h>
 # include <stdlib.h>
+# include <errno.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <string.h>
 # include <stdarg.h>
+# include <limits.h>
+
 
 //chek_functions
 int		ft_isascii(int c);
@@ -59,7 +64,7 @@ char	*ft_strrchr(const char *s, int c);
 char	*ft_strdup(const char *s1);
 void	ft_striteri(char *s, void (*f)(unsigned int, char *));
 char	**ft_split(const char *s, char c);
-int ft_strcmp(const char *s1, const char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 
 //
 //write_functions
@@ -85,21 +90,22 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 //
 //Printf_functions
-int	ft_printf(const char *str, ...);
-int	print_char(char c, int len);
-int	print_str(char *str, int len);
-int	print_number(int nb, int len);
-int	print_positive_number(unsigned int nb, int len);
-int	print_hex(size_t nb, int len, char format);
-int	ft_print_pointer(void *ptr, int len);
-int	find_print(const char *str, int i, int len, va_list list);
+int		ft_printf(const char *str, ...);
+int		print_char(char c, int len);
+int		print_str(char *str, int len);
+int		print_number(int nb, int len);
+int		print_positive_number(unsigned int nb, int len);
+int		print_hex(size_t nb, int len, char format);
+int		ft_print_pointer(void *ptr, int len);
+int		find_print(const char *str, int i, int len, va_list list);
 //
 //Get_next_line_functions
-char	*excess(char *deposit);
 char	*get_next_line(int fd);
-char	*create_line(char *deposit);
-size_t	ft_strlen_gnl(const char *str);
-char	*ft_strjoin_gnl(char *deposit, const char *buffer);
-char	*ft_strchr_gnl(const char *str, char character);
+int		line_len(char *buffer);
+char	*set_line(char **left_over);
+char	*ft_strjoin_special(char const *s1, char const *s2, int bytes_read);
+char	*ft_strchr_gnl(const char *s, int c);
+char	*ft_strdup_gnl(const char *s1);
+void	fill_buffer(int fd, char *buffer, char **left_over);
 
 #endif

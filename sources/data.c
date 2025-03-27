@@ -6,7 +6,7 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 13:12:38 by aamaya-g          #+#    #+#             */
-/*   Updated: 2024/11/14 21:30:05 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:06:57 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,11 @@ int	ft_greater(int x, int y)
 		return (x);
 	return (y);
 }
+
 void	reset(t_data *fdf)
 {
 	fdf -> zoom = ft_greater((W_WIDTH / fdf -> map -> width / 2),
-			(W_HEIGHT /fdf -> map -> height / 2));
+			(W_HEIGHT / fdf -> map -> height / 2));
 	fdf -> shift_x = W_WIDTH / 2;
 	fdf -> shift_y = (W_HEIGHT - fdf -> map -> height * fdf -> zoom) / 2;
 	fdf -> isometric = 1;

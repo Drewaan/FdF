@@ -6,7 +6,7 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 17:33:47 by aamaya-g          #+#    #+#             */
-/*   Updated: 2024/09/10 17:55:02 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:23:28 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,10 +137,10 @@ int	ft_printf(const char *str, ...)
 
 	int	i;
 	int j;
-	i = ft_printf("Hola Mundo, 658 %p, %s, %s, %%, %c, %d, %i, %u, %x, %X, %s\n",pointer,
-	 "", "hola", 'W', -30, 200,  0, 1565, 1565, NULL_string);
-	j = printf("Hola Mundo, 658 %p, %s, %s, %%, %c, %d, %i, %u, %x, %X, %s\n", pointer,
-	 "", "hola", 'W', -30, 200,  0, 1565, 1565, NULL_string);
+	i = ft_printf("Hola Mundo, 658 %p, %s, %s, %%, %c, %d, %i, %u, %x, %X,
+		 %s\n",pointer, "", "hola", 'W', -30, 200,  0, 1565, 1565, NULL_string);
+	j = printf("Hola Mundo, 658 %p, %s, %s, %%, %c, %d, %i, %u, %x, %X,
+		 %s\n",pointer, "", "hola", 'W', -30, 200,  0, 1565, 1565, NULL_string);
 	printf("%i = %i\n", i, j);
 	ft_printf("%i = %i\n", i, j);
 

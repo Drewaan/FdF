@@ -38,16 +38,9 @@ $(OBJ_DIR):
 $(LIBFT_DIR)/libft.a:
 	$(MAKE) -C $(LIBFT_DIR)
 
-# Bonus part
-BONUS_DIR = bonus
-BONUS_SRCS = $(wildcard $(BONUS_DIR)/*.c)
-BONUS_OBJS = $(patsubst $(BONUS_DIR)/%.c,$(OBJ_DIR)/%.o,$(BONUS_SRCS))
-
-bonus: $(BONUS_OBJS)
-	$(CC) $(CFLAGS) $^ -o $(NAME)_bonus $(MLX_LIB_FLAGS) -L$(LIBFT_DIR) -lft
 
 # Rule to compile bonus object files
-$(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCLUDE_DIR) -I$(MLX_INCLUDE_DIR) -I$(LIBFT_DIR)
 
 # Clean target

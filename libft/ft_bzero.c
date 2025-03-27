@@ -6,7 +6,7 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 14:52:30 by aamaya-g          #+#    #+#             */
-/*   Updated: 2024/05/16 11:46:27 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/01/28 16:08:58 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,11 @@
 
 void	ft_bzero(void *s, size_t n)
 {
-	ft_memset(s, '\0', n);
+	unsigned char	*p;
+
+	p = s;
+	while (n-- > 0)
+		*p++ = 0;
 }
 
 /* int main(void)

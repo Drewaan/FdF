@@ -6,7 +6,7 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 16:08:51 by aamaya-g          #+#    #+#             */
-/*   Updated: 2024/11/11 18:08:53 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:26:23 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	*ft_calloc(size_t count, size_t size)
 {
 	void	*arr;
+
 	if (count && size && count > 2147483647 / size)
 		return (NULL);
 	arr = malloc(count * size);

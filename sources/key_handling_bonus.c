@@ -6,13 +6,13 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/04 03:10:30 by aamaya-g          #+#    #+#             */
-/*   Updated: 2024/12/04 04:03:52 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/01/28 13:57:13 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
-int handle_key(int key, t_data *fdf)
+int	handle_key(int key, t_data *fdf)
 {
 	if (key == ESC_KEY)
 		close_window(fdf);

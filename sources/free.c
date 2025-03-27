@@ -6,7 +6,7 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:16:29 by aamaya-g          #+#    #+#             */
-/*   Updated: 2024/12/04 05:18:08 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/01/28 14:06:07 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	map_alloc(t_map *map)
 	{
 		map -> z_2d[i] = ft_calloc(map -> width, sizeof(int));
 		map -> colors[i] = ft_calloc(map -> width, sizeof(int));
-		if (!map -> z_2d || !map -> colors)
+		if (!map -> z_2d[i] || !map -> colors[i])
 		{
 			map_free(map);
 			error_msg(MEM_ALLOC_ERROR);
@@ -80,8 +80,7 @@ int	close_window(t_data *fdf)
 		free (fdf -> img);
 	map_free(fdf -> map);
 	free(fdf -> mlx);
-	free(fdf -> mlx);
+	free(fdf);
 	error_msg(SUCCESS);
 	return (SUCCESS);
 }
-

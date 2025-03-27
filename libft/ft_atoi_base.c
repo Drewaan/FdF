@@ -6,13 +6,18 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/13 11:41:43 by aamaya-g          #+#    #+#             */
-/*   Updated: 2024/11/13 12:42:02 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/03/18 19:10:51 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_strchrbs(const char	*str, char c)
+static int	ft_isspace(int c)
+{
+	return (c == ' ' || (c >= 9 && c <= 13));
+}
+
+static int	ft_strchr_i(const char *str, char c)
 {
 	int	i;
 
@@ -28,25 +33,25 @@ static int	ft_strchrbs(const char	*str, char c)
 
 int	ft_atoi_base(const char *str, const char *base)
 {
-	int	number;
+	int	nb;
 	int	sign;
 
-	number = 0;
+	nb = 0;
 	sign = 1;
-	while (*str == ' ' || (*str >= 9 && *str <= 13))
+	while (ft_isspace(*str))
 		str++;
 	if (*str == '-' || *str == '+')
 	{
 		if (*str++ == '-')
-			sign = sign * -1;
+			sign *= -1;
 	}
-	while (ft_strchrbs(base, *str) != -1
-		|| ft_strchrbs(base, ft_toupper(*str)) != -1)
+	while (ft_strchr_i(base, *str) != -1
+		|| ft_strchr_i(base, ft_toupper(*str)) != -1)
 	{
-		if (ft_strchrbs(base, *str) != -1)
-			number = number * ft_strlen(base) + ft_strchrbs(base, *str++);
+		if (ft_strchr_i(base, *str) != -1)
+			nb = nb * ft_strlen(base) + ft_strchr_i(base, *str++);
 		else
-			number = number * ft_strlen(base) + ft_strchrbs(base, ft_toupper(*str++));
+			nb = nb * ft_strlen(base) + ft_strchr_i(base, ft_toupper(*str++));
 	}
-	return (number * sign);
+	return (nb * sign);
 }

@@ -6,92 +6,102 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 13:34:29 by aamaya-g          #+#    #+#             */
-/*   Updated: 2024/09/05 12:14:53 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/03/20 14:33:39 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*excess(char *deposit)
+char	*get_next_line(int fd)
 {
-	char	*excess;
-	int		i;
-	int		x;
+	char		*buffer;
+	char		*line;
+	static char	*left_over[OPEN_MAX];
 
-	i = 0;
-	x = 0;
-	while (deposit[i] != '\0' && deposit[i] != '\n')
-		i++;
-	if (!deposit[i])
+	if (fd < 0 || BUFFER_SIZE <= 0 || read(fd, 0, 0) < 0)
+		return (NULL);
+	buffer = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buffer)
+		return (NULL);
+	fill_buffer(fd, buffer, &left_over[fd]);
+	free(buffer);
+	line = set_line(&left_over[fd]);
+	if (!line)
 	{
-		free (deposit);
+		free(left_over[fd]);
+		free(line);
 		return (NULL);
 	}
-	excess = malloc(sizeof(char) * (ft_strlen_gnl(deposit) - i + 1));
-	if (!excess)
-		return (NULL);
-	i++;
-	while (deposit[i])
-	{
-		excess[x++] = deposit[i++];
-	}
-	excess[x] = '\0';
-	free(deposit);
-	return (excess);
+	return (line);
 }
 
-char	*create_line(char *deposit)
+char	*copy_line(char *left_over)
 {
 	char	*line;
 	int		i;
 
 	i = 0;
-	if (!deposit[0])
+	if (line_len(left_over) == 0 && !ft_strchr_gnl(left_over, '\n'))
 		return (NULL);
-	while (deposit[i] && deposit[i] != '\n')
-		i++;
-	line = malloc(sizeof(char) * (i + 2));
+	line = malloc((line_len(left_over) + 1) * sizeof(char));
 	if (!line)
+	{
+		free(line);
 		return (NULL);
-	i = 0;
-	while (deposit[i] && deposit[i] != '\n')
+	}
+	while ((left_over)[i] != '\n' && (left_over)[i])
 	{
-		line[i] = deposit[i];
+		line[i] = (left_over)[i];
 		i++;
 	}
-	if (deposit[i] == '\n')
-	{
-		line[i] = deposit[i];
-		i++;
-	}
-	line[i] = '\0';
+	line[i] = (left_over)[i];
+	if ((left_over)[i] != '\0')
+		line[i + 1] = '\0';
 	return (line);
 }
 
-char	*get_next_line(int fd)
+char	*set_line(char **left_over)
 {
-	static char	*deposit[4096];
-	char		buffer[BUFFER_SIZE +1];
-	int			readbytes;
-	char		*line;
+	char	*line;
+	char	*temp;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (!*left_over)
 		return (NULL);
-	readbytes = 1;
-	while (!ft_strchr_gnl(deposit[fd], '\n') && readbytes != 0)
+	temp = *left_over;
+	line = copy_line(*left_over);
+	*left_over = ft_strdup_gnl(*left_over + line_len(*left_over));
+	if (!**left_over)
 	{
-		readbytes = read(fd, buffer, BUFFER_SIZE);
-		if (readbytes == -1)
-			return (NULL);
-		buffer[readbytes] = '\0';
-		deposit[fd] = ft_strjoin_gnl(deposit[fd], buffer);
+		free(*left_over);
+		*left_over = NULL;
 	}
-	if (!deposit[fd])
-		return (NULL);
-	line = create_line(deposit[fd]);
-	deposit[fd] = excess(deposit[fd]);
+	free(temp);
 	return (line);
 }
+
+void	fill_buffer(int fd, char *buffer, char **left_over)
+{
+	int		bytes_read;
+	char	*temp;
+
+	bytes_read = 1;
+	while (bytes_read > 0)
+	{
+		bytes_read = read(fd, buffer, BUFFER_SIZE);
+		if (bytes_read == -1)
+			return ;
+		else if (bytes_read == 0)
+			break ;
+		buffer[bytes_read] = '\0';
+		temp = *left_over;
+		*left_over = ft_strjoin_special(temp, buffer, bytes_read);
+		free(temp);
+		temp = NULL;
+		if (ft_strchr_gnl(buffer, '\n'))
+			break ;
+	}
+}
+
 /* int	main(void)
 {
 	int		fd, fd1, fd2;
