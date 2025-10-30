@@ -6,7 +6,7 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/09/04 16:00:16 by aamaya-g          #+#    #+#             */
-/*   Updated: 2025/03/18 19:16:10 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/03/27 15:40:40 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@
 // UTILS
 # define BASE_HEXA "0123456789ABCDEF"
 # define ROT 0.01
-# define ZOOM 0.1
+# define ZOOM 1
 # define TRANS 1.5
 // Flattening Factor
 # define FF 00.01

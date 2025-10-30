@@ -6,7 +6,7 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 16:17:41 by aamaya-g          #+#    #+#             */
-/*   Updated: 2025/03/20 13:09:40 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:03:48 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,14 @@ void	map_size(int fd, t_map *map)
 	char	**split;
 
 	line = get_next_line(fd);
+	if (!line)
+		error_msg(MAP_EMPTY_ERROR);
 	split = ft_split(line, ' ');
+	if (!split || !split[0])
+	{
+		free(line);
+		error_msg(MAP_EMPTY_ERROR);
+	}
 	map -> width = find_width(split);
 	while (line)
 	{

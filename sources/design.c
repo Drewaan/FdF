@@ -6,7 +6,7 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 13:52:34 by aamaya-g          #+#    #+#             */
-/*   Updated: 2025/01/28 16:22:53 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/03/27 16:01:31 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	design_map(t_data *fdf)
 				if (x < fdf -> map -> width - 1)
 					bresenham(fdf, transformation(fdf, create_point(x, y, fdf)),
 						transformation(fdf, create_point(x + 1, y, fdf)));
-				if (y < fdf -> map -> width - 1)
+				if (y < fdf -> map -> height - 1)
 					bresenham(fdf, transformation(fdf, create_point(x, y, fdf)),
 						transformation(fdf, create_point(x, y + 1, fdf)));
 			}

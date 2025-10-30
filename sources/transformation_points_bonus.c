@@ -6,7 +6,7 @@
 /*   By: aamaya-g <aamaya-g@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 00:56:11 by aamaya-g          #+#    #+#             */
-/*   Updated: 2025/03/20 14:23:05 by aamaya-g         ###   ########.fr       */
+/*   Updated: 2025/05/13 13:04:26 by aamaya-g         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,6 @@ t_point	create_point(int x, int y, t_data *fdf)
 {
 	t_point	point;
 
-	if (x < 0 || x >= fdf->map->width || y < 0 || y >= fdf->map->height)
-	{
-		point.x = 0;
-		point.y = 0;
-		point.z = 0;
-		point.color = 0;
-		return (point);
-	}
 	point.x = x;
 	point.y = y;
 	point.z = fdf->map->z_2d[y][x];
@@ -47,16 +39,3 @@ t_point	create_point(int x, int y, t_data *fdf)
 		point.color = z_color_calc(fdf, point.z);
 	return (point);
 }
-/* t_point	create_point(int x, int y, t_data *fdf)
-{
-	t_point	point;
-
-	point.x = x;
-	point.y = y;
-	point.z = fdf->map->z_2d[y][x];	
-	if (fdf->map->iscolor)
-		point.color = fdf->map->colors[y][x];
-	else
-		point.color = z_color_calc(fdf, point.z);
-	return (point);
-} */

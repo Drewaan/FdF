@@ -27,7 +27,6 @@
 # include <stdarg.h>
 # include <limits.h>
 
-
 //chek_functions
 int		ft_isascii(int c);
 int		ft_isalnum(int c);
